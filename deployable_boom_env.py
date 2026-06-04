@@ -108,7 +108,7 @@ HOW THE PHYSICS PIECES CONNECT
 References:
   Gymnasium docs — https://gymnasium.farama.org
   Stable-Baselines3 — https://stable-baselines3.readthedocs.io
-  Steps 1-3 of this project (smpc_constitutive, thermal_solver, step3_sma_actuator)
+  Steps 1-3 of this project (smpc_constitutive, thermal_solver, sma_actuator)
 """
 
 import numpy as np
@@ -121,7 +121,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from smpc_constitutive import SMPCModel
 from thermal_solver import ThermalSolver
-from step3_sma_actuator import (
+from sma_actuator import (
     SMA_PARAMS, BOOM_PARAMS,
     phase_fraction, phase_fraction_dot,
     constitutive_model, thermal_model_wire,
@@ -247,7 +247,7 @@ class SMAWireState:
         rho_e   = (xi * (self.p["rho_eM"] + self.p["mu_eM"] * T)
                    + (1 - xi) * (self.p["rho_eA"] + self.p["mu_eA"] * T))
         R_wire  = rho_e * self.p_boom["L_boom"] / self.A
-        from step3_sma_actuator import SIGMA_SB, T_SPACE_K
+        from sma_actuator import SIGMA_SB, T_SPACE_K
         A_surf  = np.pi * self.d * self.p_boom["L_boom"]
         T_K     = T + 273.15
         Q_j     = I_current**2 * R_wire
